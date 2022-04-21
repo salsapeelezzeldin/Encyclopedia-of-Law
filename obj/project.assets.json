@@ -5703,11 +5703,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GP\\New folder\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "D:\\GP\\Encyclopedia-of-Law\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "D:\\GP\\New folder\\WebApplication1\\WebApplication1.csproj",
+      "projectPath": "D:\\GP\\Encyclopedia-of-Law\\WebApplication1.csproj",
       "packagesPath": "C:\\Users\\M-S\\.nuget\\packages\\",
-      "outputPath": "D:\\GP\\New folder\\WebApplication1\\obj\\",
+      "outputPath": "D:\\GP\\Encyclopedia-of-Law\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\M-S\\AppData\\Roaming\\NuGet\\NuGet.Config",

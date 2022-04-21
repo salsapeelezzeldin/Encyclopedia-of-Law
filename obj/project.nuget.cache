@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "49lCH+KWF2pl+tthAP3SLfKfFNJUfSLRCF3uLnL4akQ4ATWEmoNkDOosfKoHFzg/2ZzMpgWX+p3j7w9DLgZMYQ==",
+  "dgSpecHash": "TXDvSpqBhiZYrqXRLWkzMN4dvqh5g+6RK3Uns4sRY9xo7AJ6u2Ri0NDL26OmhiitShWxdZ/yNSFE7c7vr+5AVg==",
   "success": true,
-  "projectFilePath": "D:\\GP\\New folder\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "D:\\GP\\Encyclopedia-of-Law\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\M-S\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.13\\microsoft.aspnetcore.cryptography.internal.3.1.13.nupkg.sha512",
     "C:\\Users\\M-S\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.13\\microsoft.aspnetcore.cryptography.keyderivation.3.1.13.nupkg.sha512",
