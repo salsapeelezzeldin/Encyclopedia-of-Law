@@ -1,6 +1,6 @@
 using System;
 
-namespace WebApplication1.Models
+namespace Encyclopedia_Of_Laws.Models
 {
     public class ErrorViewModel
     {

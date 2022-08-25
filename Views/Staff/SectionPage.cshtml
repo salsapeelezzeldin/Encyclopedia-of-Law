@@ -1,0 +1,86 @@
+﻿@model Encyclopedia_Of_Laws.ViewModels.SectionChapterViewModels
+@using Encyclopedia_Of_Laws.Views.Shared.Components.SearchBar1
+
+@{
+    ViewData["Title"] = "SectionPage";
+    //  Layout = "~/Views/Shared/_StaffLayout.cshtml";
+    ViewData["Action"] = "Create_Section";
+    ViewData["Possible_Search"] = "أسم الباب";
+    int i = 1;
+    int k = 1;
+    string blabla;
+}
+@section Scripts{
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="~/js/ChapterController.js"></script>
+}
+
+
+<div class="card">
+    <div class="card-body" style="padding: 20px;">
+
+        <!-- Table with hoverable rows -->
+        <table class="table table-hover" style="width:100%">
+
+            <thead>
+                <tr>
+                    <th>العمليات</th>
+                    <th>@Html.DisplayNameFor(model => model.chapters)</th>
+                    <th>اسم الباب</th>
+                    <th>رقم الباب</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var value in Model.sections)
+                {
+                    i = 1;
+                    k = 1;
+                    <tr onclick="showHideRow(@value.IdP);" class="table-rows">
+                        <td class="processes">
+
+                            <a class="btn btn-primary" asp-action="Edit_Section" asp-route-id="@value.IdP">
+                                تعديل
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
+                        <td>
+                            @foreach (Chapter1 mm in Model.chapters)
+                            {
+                                @if (mm.IdP == value.IdP)
+                                {
+                                    blabla = "hidden_row" + i + "_" + value.IdP;
+                                    @if (k == 1)
+                                    {
+
+                                        <div id="hidden_row_@value.IdP" class="first-row">@mm.اسمالفصل</div>
+                                    }
+                                    else
+                                    {
+                                        <div id=@blabla class="hidden_row">
+                                            @mm.اسمالفصل
+                                        </div>
+                                    }
+
+                                    i++;
+                                    k++;
+                                }
+                            }
+                        </td>
+                        <td style="text-align:right">
+                            @value.اسمالباب
+                        </td>
+                        <td style="text-align:right">
+                            @value.رقمالباب
+                        </td>
+
+                    </tr>
+
+                }
+            </tbody>
+
+
+        </table>
+        <!-- End Table with hoverable rows -->
+
+    </div>
+</div>

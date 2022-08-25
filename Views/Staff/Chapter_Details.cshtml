@@ -1,0 +1,57 @@
+﻿@model Encyclopedia_Of_Laws.ViewModels.SectionChapterViewModels
+@{
+    ViewData["Title"] = "Chapter_Details";
+}
+
+<h1>Chapter_Details</h1>
+
+<div>
+    <h4>Chapter1</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.chapter.رقمالفصل)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.chapter.رقمالفصل)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.chapter.اسمالفصل)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.chapter.اسمالفصل)
+        </dd>
+        @if (Model.chapter2.Select(p => p.IdChapter).Contains(Model.chapter.IdChapter))
+        {
+            <dt class="col-sm-2">
+                اسم النقطه
+            </dt>
+        @foreach (var value in Model.chapter2)
+        {
+            
+            <dd class="col-sm-2">
+                @value.اسمالنقطه
+            </dd>
+            <br />
+            @if (Model.chapter3.Select(p => p.IdCh2).Contains(value.IdCh2))
+            {
+                <dt class="col-sm-10">
+                    محتوى النقطه
+                </dt>
+                @foreach (var value1 in Model.chapter3.Where(p => p.IdCh2 == value.IdCh2))
+                {
+                    <dd class="col-sm-10">
+                        @value1.محتويالنقطه
+                    </dd>
+                }
+            }
+        }
+        }
+
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.chapter.IdChapter">Edit</a> |
+    <a asp-action="ChapterPage">Back to List</a>
+</div>

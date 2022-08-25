@@ -1,0 +1,51 @@
+﻿@model Encyclopedia_Of_Laws.ViewModels.LawPartViewModel
+
+@{
+    ViewData["Title"] = "Create_Part";
+}
+<link href="~/css/CreatePages.css" rel="stylesheet" />
+<script src="~/js/Collapse.js"></script>
+<h1 style="text-align:right">إضافة قسم</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create_Part">
+            <div>
+
+
+                <label class="control-label">أسم القانون</label>
+                <br />
+                <select asp-for="اقسام.IdLaw" class="form-select-sm"
+                        asp-items="@(new SelectList(Model.laws, "IdLaw", "اسمالقانون"))" id="required">
+                    <option selected="selected" value="">--أختر قانون--</option>
+                </select>
+                <span asp-validation-for="اقسام.IdLaw" class="text-danger"></span>
+
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="اقسام.رقمالقسم" class="control-label"></label>
+                <input id="required" asp-for="اقسام.رقمالقسم" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="اقسام.رقمالقسم" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="اقسام.اسمالقسم" class="control-label"></label>
+                <input id="required" asp-for="اقسام.اسمالقسم" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="اقسام.اسمالقسم" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-primary" id="submit" onclick="validate()" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a id="back" asp-action="PartPage"> <== العودة إلي الأقسام</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

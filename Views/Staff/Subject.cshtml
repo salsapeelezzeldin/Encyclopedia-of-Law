@@ -1,0 +1,164 @@
+﻿@model IEnumerable<Encyclopedia_Of_Laws.Models.Subjectsمواد>
+@using Encyclopedia_Of_Laws.Views.Shared.Components.SearchBar1
+
+@{
+    ViewData["Title"] = "SubjectPage";
+    // Layout = "~/Views/Shared/_StaffLayout.cshtml";
+    ViewData["Action"] = "Create_Subject";
+    ViewData["Possible_Search"] = "رقم الماده";
+    int i = 1;
+    int k = 1;
+    string blabla;
+    int Index;
+    int spaceindex;
+}
+
+@section Scripts{
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="~/js/ChapterController.js"></script>
+}
+
+<style>
+
+    @*.staff-container{
+            background-color:gray;
+            text-align:right;
+    }*@
+@*    .first-row, .hidden_row {
+        text-align: right;
+        display: inline
+    }*@
+    .محتوىالماده{
+        width:600;
+        text-align:right;
+    }
+    .رقمالماده{
+        width:auto;
+        text-align:right
+    }
+    .حالةالماده {
+        width: fit-content;
+        text-align:right
+    }
+</style>
+
+<div class="card">
+    <div class="card-body" style="padding: 20px;">
+
+        <!-- Table with hoverable rows -->
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>العمليات</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.حالهالماده)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.محتوىالماده)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.رقمالماده)
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    k = 1;
+                    <tr class="table-rows">
+                        <td class="processes">
+
+
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdSubjects">حـذف</a>
+                            |
+                            <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.IdSubjects">تـفاصيـل</a>
+                            |
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.IdSubjects">تـعديـل</a>
+                        </td>
+                        <td class="حالةالماده">
+                            @Html.DisplayFor(modelItem => item.حالهالماده)
+                        </td>
+                        <td class="محتوىالماده" onclick="showHideRow(@item.IdSubjects);">
+                            @if (item.محتوىالماده != null && item.محتوىالماده.Length > 90)
+                            {
+                                blabla = "hidden_row" + i + "_" + item.IdSubjects;
+                                Index = 90;
+                                if (@item.محتوىالماده[Index] == ' ')
+                                {
+                                    @if (k == 1)
+                                    {
+                                        <div id="hidden_row_@item.IdSubjects" class="first-row">
+                                            @item.محتوىالماده.Substring(0, Index)
+                                        </div>
+                                    }
+                                    <div id=@blabla class="hidden_row" style="">
+                                        @item.محتوىالماده.Substring(Index)
+                                    </div>
+                                }
+                                else
+                                {
+                                    spaceindex = Index + item.محتوىالماده.Substring(Index).IndexOf(' ');
+                                    @if (k == 1)
+                                    {
+                                        <div id="hidden_row_@item.IdSubjects" class="first-row">
+                                            @item.محتوىالماده.Substring(0, spaceindex)
+                                        </div>
+                                    }
+                                    <div id=@blabla class="hidden_row">
+                                        @item.محتوىالماده.Substring(spaceindex)
+                                        @if (item.التعديلالسابقللماده != null)
+                                        {
+                                            <div>
+                                                @Html.DisplayNameFor(model => model.التعديلالسابقللماده)
+                                                @item.التعديلالسابقللماده
+                                            </div>
+                                            <div>
+                                                @Html.DisplayNameFor(model => model.سنهالتعديلالسابق)
+                                                @item.سنهالتعديلالسابق
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelitem => item.محتوىالماده)
+                                blabla = "hidden_row" + i + "_" + item.IdSubjects;
+
+                                @if (item.التعديلالسابقللماده != null)
+                                {
+                                    <div id=@blabla class="hidden_row">
+                                        <div style="color:red">
+                                            @Html.DisplayNameFor(model => model.التعديلالسابقللماده)
+                                        </div>
+                                        <div>
+                                            @item.التعديلالسابقللماده
+                                        </div>
+                                        <div style="color:red">
+                                            @Html.DisplayNameFor(model => model.سنهالتعديلالسابق)
+                                        </div>
+                                        <div>
+                                            @item.سنهالتعديلالسابق
+                                        </div>
+
+                                    </div>
+                                }
+
+
+                            }
+                        </td>
+                        <td class="رقمالماده">
+                            @Html.DisplayFor(modelItem => item.رقمالماده)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- End Table with hoverable rows -->
+
+    </div>
+</div>

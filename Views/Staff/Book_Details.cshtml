@@ -1,0 +1,30 @@
+﻿@model Encyclopedia_Of_Laws.Models.Bookكتابقسمباب
+
+@{
+    ViewData["Title"] = "Book_Details";
+}
+
+<h1>Book_Details</h1>
+
+<div>
+    <h4>Bookكتابقسمباب</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.رقمالكتاب)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.رقمالكتاب)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.اسمالكتاب)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.اسمالكتاب)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit_Book" asp-route-id="@Model.IdB">Edit</a> |
+    <a asp-action="BookPage">Back to List</a>
+</div>

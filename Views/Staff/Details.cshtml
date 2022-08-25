@@ -1,0 +1,61 @@
+﻿@model Encyclopedia_Of_Laws.Models.Subjectsمواد
+
+@{
+    ViewData["Title"] = "Details";
+ //   Layout = "~/Views/Shared/_StaffLayout.cshtml";
+    ViewData["Action"] = "Laws_Details";
+}
+<style>
+    .row {
+        text-align: right;
+        font-size: 23px;
+    }
+
+    dt {
+        width: 115px;
+    }
+</style>
+<h1 style="text-align:right"> تـفـاصيـل الماده</h1>
+<hr />
+<div class="details_container">
+    <div>
+
+        <dl class="row">
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.رقمالماده)
+            </dd>
+            <dt class="col-sm-2">
+                : @Html.DisplayNameFor(model => model.رقمالماده)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.محتوىالماده)
+            </dd>
+            <dt class="col-sm-2">
+                : @Html.DisplayNameFor(model => model.محتوىالماده)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.حالهالماده)
+            </dd>
+            <dt class="col-sm-2">
+                : @Html.DisplayNameFor(model => model.حالهالماده)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.التعديلالسابقللماده)
+            </dd>
+            <dt class="col-sm-2">
+                : @Html.DisplayNameFor(model => model.التعديلالسابقللماده)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.سنهالتعديلالسابق)
+            </dd>
+            <dt class="col-sm-2">
+                : @Html.DisplayNameFor(model => model.سنهالتعديلالسابق)
+            </dt>
+
+        </dl>
+    </div>
+    <div style="font-size:22px">
+        <a id="back" asp-action="Edit" asp-route-id="@Model.IdSubjects">تعديل</a> |
+        <a id="back" asp-action="SubjectPage">الرجوع إلي المواد</a>
+    </div>
+</div>

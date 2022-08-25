@@ -1,0 +1,430 @@
+﻿
+@model Encyclopedia_Of_Laws.ViewModels.LawContenetViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home";
+@*    int i = 1;*@
+    int k = 1;
+    string blabla;
+}
+<html>
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <style>
+        summary {
+            display: block;
+            cursor: pointer;
+            outline: 0;
+        }
+
+            summary::-webkit-details-marker {
+                display: none;
+            }
+
+        body {
+            font-family: "Open Sans", sans-serif;
+            background: #f6f9ff;
+            color: #444444;
+            /*  background-color: #191c1e;
+            color: white;*/
+            font-size: 1.6rem;
+            margin: 0;
+            padding: 3rem;
+        }
+
+
+        .tree-nav__item {
+            display: block;
+            white-space: nowrap;
+            /*color: #ccc;*/
+            position: relative;
+        }
+
+            .tree-nav__item.is-expandable::before {
+                /* لون الخط الي نازل*/
+               /* border-left: 1px solid #333;*/  /*ظهور الخط واختفائه*/
+                content: "";
+                height: 100%;
+                left: 0.8rem;
+                position: absolute;
+                top: 2.4rem;
+                height: calc(100% - 2.4rem);
+            }
+            .ee-nav__item .tree-nav__item {
+                margin-left: 2.4rem;
+            }
+
+            .tree-nav__item.is-expandable[open] > .tree-nav__item-title::before {
+                font-family: "ionicons";
+                transform: rotate(90deg);
+            }
+
+            .tree-nav__item.is-expandable > .tree-nav__item-title {
+                padding-left: 2.4rem;
+            }
+
+                .tree-nav__item.is-expandable > .tree-nav__item-title::before {
+                    position: absolute;
+                    will-change: transform;
+                    transition: transform 300ms ease;
+                    font-family: "ionicons";
+                    /*  color: #fff;*/
+                    font-size: 1.1rem;
+                    content: "\f125";
+                    left: 0;
+                    display: inline-block;
+                    width: 1.6rem;
+                    text-align: center;
+                }
+
+        .tree-nav__item-title {
+            cursor: pointer;
+            display: block;
+            outline: 0;
+            /* color: #fff;*/
+            font-size: 1.5rem;
+            line-height: 3.2rem;
+        }
+
+            .tree-nav__item-title .icon {
+                display: inline;
+                padding-left: 1.6rem;
+                margin-right: 0.8rem;
+                color: #666;
+                font-size: 1.4rem;
+                position: relative;
+            }
+
+                .tree-nav__item-title .icon::before {
+                    top: 0;
+                    position: absolute;
+                    left: 0;
+                    display: inline-block;
+                    width: 1.6rem;
+                    text-align: center;
+                }
+
+            .tree-nav__item-title::-webkit-details-marker {
+                display: none;
+            }
+
+        ul {
+            list-style-type: none;
+        }
+       
+       /* يمين وشمال */
+        .tree-nav {
+           
+      /*      float: right;*/
+        }
+        details {
+            border: 1px solid cornflowerblue;
+            border-top-color: cornflowerblue;
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-right-color: aliceblue;
+            /*     border-right-style: solid;
+            border-right-width: 1px;
+*/
+
+
+
+            border-bottom-color: aliceblue;
+            /* border-bottom-style: solid;
+            border-bottom-width: 1px;*/
+
+
+
+
+            border-left-color: cornflowerblue;
+            border-left-style: solid;
+            border-left-width: 1px;
+            border-radius: 10px;
+            padding: 0.5em 0.5em 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            border-radius: 10px;
+            font-family: "Noto Nastaliq Urdu script=arabic rev=3";
+        }
+
+        summary {
+            font-weight: bold;
+            margin: -.5em -.5em 0;
+            padding: .5em;
+            /*background-color:cornflowerblue;*/
+            font-family: 'Urdu Typesetting';
+            background-color:lightskyblue;
+        }
+        details > summary {
+      /*عرض اللون*/
+            padding: .2rem 1rem;
+        }
+
+        details[open] {
+            padding: .5em;
+        }
+
+            details[open] summary {
+                
+                border-bottom: 1px solid cornflowerblue;
+                margin-bottom: .5em;
+            }
+
+   
+    </style>
+</head>
+
+
+<body>
+    <h1>الفهرس</h1>
+    
+    <div id="1">
+
+        <nav class="tree-nav">
+            <details class="tree-nav__item is-expandable">
+                @foreach (var LL in Model.laws)
+                {
+                <summary class="tree-nav__item-title">
+                    <h3> 
+                        <span class="caret tree-nav__item-title"> @Html.DisplayFor(model => LL.اسمالقانون )</span>
+                       
+                    </h3>
+                  
+                </summary>
+
+
+                    <ul>
+
+                        <ul>
+
+                            <li><a asp-action="Details" asp-route-id="1">ديباجه</a></li>
+                            <details class="tree-nav__item is-expandable">
+
+                                <summary class="tree-nav__item-title">
+                                    <h3>الاقسام</h3>
+                                </summary>
+                                <ul>
+                                    @foreach (Partقسمكتابباب pp in Model.parts)
+                                    {
+                                        @if (pp.IdLaw == LL.IdLaw)
+                                        {
+
+                                            <li>
+                                                <span>
+
+
+                                                   
+                                                    <a >@Html.DisplayFor(model => pp.رقمالقسم)</a>
+                                                    <a >@Html.DisplayFor(model => pp.اسمالقسم)</a>
+
+                                                    <br />
+                                                    <ul>
+                                                        <details class="tree-nav__item is-expandable">
+                                                            <summary class="tree-nav__item-title">
+                                                                <h3>الكتب</h3>
+                                                            </summary>
+                                                            <ul>
+
+                                                                @foreach (Bookكتابقسمباب bb in Model.books)
+                                                                {
+                                                                    @if (bb.IdS == pp.IdS)
+                                                                    {
+                                                                        <li>
+
+                                                                            <a>@bb.رقمالكتاب</a>
+
+                                                                            <a>@bb.اسمالكتاب</a>
+
+                                                                            <br />
+
+                                                                        </li>
+                                                                        <details class="tree-nav__item is-expandable">
+                                                                            <summary class="tree-nav__item-title">
+                                                                                <h3>الابواب</h3>
+                                                                            </summary>
+                                                                            <ul>
+                                                                                @foreach (Sectionكتابقسم ss in Model.sections)
+                                                                                {
+                                                                                    @if (ss.IdB == bb.IdB)
+                                                                                    {
+                                                                                        <li>
+                                                                                            <a>@ss.رقمالباب</a>
+                                                                                            <a>@ss.اسمالباب</a>
+                                                                                            <br />
+                                                                                        </li>
+                                                                                        <details class="tree-nav__item is-expandable">
+                                                                                            <summary class="tree-nav__item-title">
+                                                                                                <h3>الفصول</h3>
+                                                                                            </summary>
+                                                                                            <ul>
+                                                                                                @foreach (Chapter1 ch1 in Model.chapters)
+                                                                                                {
+                                                                                                    @if (ch1.IdP == ss.IdP)
+                                                                                                    {
+                                                                                                        <li>
+                                                                                                            <a>@ch1.رقمالفصل</a>
+                                                                                                            <a>@ch1.اسمالفصل</a>
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <details class="tree-nav__item is-expandable">
+                                                                                                                <summary class="tree-nav__item-title">
+                                                                                                                    <h3>مواد القانون </h3>
+                                                                                                                </summary>
+                                                                                                                <ul>
+                                                                                                                    @foreach (Subjectsمواد sub in Model.subjects)
+                                                                                                                    {
+                                                                                                                        @if (sub.IdChapter == ch1.IdChapter)
+                                                                                                                        {
+                                                                                                                            <li>
+                                                                                                                                <a asp-action="Details" asp-route-id="@sub.IdSubjects"> @Html.DisplayFor(model => sub.رقمالماده)</a>
+
+
+                                                                                                                            </li>
+
+                                                                                                                            <br />
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                </ul>
+                                                                                                            </details>
+                                                                                                        </li>
+                                                                                                        <details class="tree-nav__item is-expandable">
+                                                                                                            <summary class="tree-nav__item-title">
+                                                                                                                <h3>الفصول الفرعية 2</h3>
+                                                                                                            </summary>
+                                                                                                            <ul>
+                                                                                                                @foreach (Chapter2 ch2 in Model.chapter2)
+                                                                                                                {
+                                                                                                                    @if (ch2.IdChapter == ch1.IdChapter)
+                                                                                                                    {
+                                                                                                                        <li>
+                                                                                                                            <a>@ch2.اسمالنقطه</a>
+                                                                                                                            <br />
+                                                                                                                            <br />
+                                                                                                                            <details class="tree-nav__item is-expandable">
+                                                                                                                                <summary class="tree-nav__item-title">
+                                                                                                                                    <h3>مواد القانون </h3>
+                                                                                                                                </summary>
+                                                                                                                                <ul>
+
+                                                                                                                                    @foreach (Subjectsمواد sub in Model.subjects)
+                                                                                                                                    {
+
+                                                                                                                                        @if (sub.IdCh2 == ch2.IdCh2)
+                                                                                                                                        {
+                                                                                                                                            <li>
+                                                                                                                                                <a asp-action="Details" asp-route-id="@sub.IdSubjects"> @Html.DisplayFor(model => sub.رقمالماده)</a>
+                                                                                                                                            </li>
+                                                                                                                                            <br />
+                                                                                                                                        }
+
+                                                                                                                                    }
+
+                                                                                                                                </ul>
+                                                                                                                            </details>
+                                                                                                                            <details class="tree-nav__item is-expandable">
+                                                                                                                                <summary class="tree-nav__item-title">
+                                                                                                                                    <h3>مواد القانون </h3>
+                                                                                                                                </summary>
+                                                                                                                                <ul>
+
+                                                                                                                                    @foreach (Chapter3 ch3 in Model.chapter3)
+                                                                                                                                    {
+
+
+                                                                                                                                        @if (ch3.IdCh2 == ch2.IdCh2)
+                                                                                                                                        {
+                                                                                                                                            <li> <a>@ch3.محتويالنقطه</a></li>
+                                                                                                                                            //المواد  ch3
+                                                                                                                                            <details class="tree-nav__item is-expandable">
+                                                                                                                                                <summary class="tree-nav__item-title">
+                                                                                                                                                    <h3>مواد القانون </h3>
+                                                                                                                                                </summary>
+                                                                                                                                                <ul>
+                                                                                                                                                    @foreach (Subjectsمواد sub in Model.subjects)
+                                                                                                                                                    {
+
+                                                                                                                                                        @if (sub.IdChapter == ch1.IdChapter || sub.IdCh2 == ch2.IdCh2 || sub.IdCh3 == ch3.IdCh3)
+                                                                                                                                                        {
+
+                                                                                                                                                            <li>
+
+
+                                                                                                                                                                <a asp-action="Details" asp-route-id="@sub.IdSubjects"> @Html.DisplayFor(model => sub.رقمالماده)</a>
+                                                                                                                                                            </li>
+
+                                                                                                                                                            <br />
+                                                                                                                                                        }
+
+                                                                                                                                                    }
+                                                                                                                                                </ul>
+                                                                                                                                            </details>
+
+                                                                                                                                            // end of مواد ch3
+                                                                                                                                        }
+                                                                                                                                    }
+
+
+                                                                                                                                </ul>
+                                                                                                                            </details>
+
+                                                                                                                        </li>
+                                                                                                                    }
+
+                                                                                                                }
+
+                                                                                                            </ul>
+
+                                                                                                        </details>
+                                                                                                    }
+
+
+                                                                                                }
+                                                                                            </ul>
+                                                                                        </details>
+                                                                                    }
+                                                                                }
+                                                                            </ul>
+
+                                                                        </details>
+                                                                    }
+                                                                }
+                                                            </ul>
+
+                                                        </details>
+                                                    </ul>
+                                                </span>
+                                            </li>
+
+                                        }
+
+                                    }
+                                </ul>
+                            </details>
+                        </ul>
+                    </ul>
+
+                }
+            </details>
+        </nav>
+
+    </div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

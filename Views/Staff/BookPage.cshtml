@@ -1,0 +1,80 @@
+﻿@model Encyclopedia_Of_Laws.ViewModels.BookSectionViewModel
+
+@{
+    ViewData["Title"] = "BookPage";
+  //  Layout = "~/Views/Shared/_StaffLayout.cshtml";
+    ViewData["Action"] = "Create_Book";
+    ViewData["Possible_Search"] = "أسم الكتاب";
+    int i = 1;
+    int k = 1;
+    string blabla;
+}
+@section Scripts{
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="~/js/ChapterController.js"></script>
+}
+
+<div class="card">
+    <div class="card-body" style="padding: 20px;">
+
+        <!-- Table with hoverable rows -->
+        <table class="table table-hover" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>العمليات</th>
+                    <th>@Html.DisplayNameFor(model => model.أبواب)</th>
+                    <th>اسم الكتاب</th>
+                    <th>رقم الكتاب</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var value in Model.books)
+                {
+                    i = 1;
+                    k = 1;
+                    <tr onclick="showHideRow(@value.IdB);" class="table-rows">
+
+                        <td class="processes">
+                            <a class="btn btn-primary" asp-action="Edit_Book" asp-route-id="@value.IdB">
+                                تعديل
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
+                        <td>
+                            @foreach (Sectionكتابقسم mm in Model.أبواب)
+                            {
+                                @if (mm.IdB == value.IdB)
+                                {
+                                    blabla = "hidden_row" + i + "_" + value.IdB;
+                                    @if (k == 1)
+                                    {
+
+                                        <div id="hidden_row_@value.IdB" class="first-row">@mm.اسمالباب</div>
+                                    }
+                                    else
+                                    {
+                                        <div id=@blabla class="hidden_row">
+                                            @mm.اسمالباب
+                                        </div>
+                                    }
+
+                                    i++;
+                                    k++;
+                                }
+                            }
+                        </td>
+                        <td style="text-align:right">
+                            @value.اسمالكتاب
+                        </td>
+                        <td style="text-align:right">
+                            @value.رقمالكتاب
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- End Table with hoverable rows -->
+
+    </div>
+</div>

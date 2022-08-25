@@ -1,0 +1,83 @@
+﻿@model Encyclopedia_Of_Laws.ViewModels.PartBookViewModel
+@using Encyclopedia_Of_Laws.Views.Shared.Components.SearchBar1
+
+@{
+    ViewData["Title"] = "PartPage";
+    //  Layout = "~/Views/Shared/_StaffLayout.cshtml";
+    ViewData["Action"] = "Create_Part";
+    ViewData["Possible_Search"] = "أسم القسم";
+    int i = 1;
+    int k = 1;
+    string blabla;
+}
+@section Scripts{
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="~/js/ChapterController.js"></script>
+}
+
+
+<div class="card">
+    <div class="card-body" style="padding: 20px;">
+
+        <!-- Table with hoverable rows -->
+        <table class="table table-hover" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th scope="col">العمليات</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.كتب)</th>
+                    <th scope="col">أسم القسم</th>
+                    <th scope="col">رقم القسم</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var value in Model.parts)
+                {
+                    i = 1;
+                    k = 1;
+                    <tr onclick="showHideRow(@value.IdS);" class="table-rows">
+
+
+                        <td class="processes">
+                            <a class="btn btn-primary" asp-action="Edit_Part" asp-route-id="@value.IdS">
+                                تعديل
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
+                        <td>
+                            @foreach (Bookكتابقسمباب mm in Model.كتب)
+                            {
+                                @if (mm.IdS == value.IdS)
+                                {
+                                    blabla = "hidden_row" + i + "_" + value.IdS;
+                                    @if (k == 1)
+                                    {
+
+                                        <div id="hidden_row_@value.IdS" class="first-row">@mm.اسمالكتاب</div>
+                                    }
+                                    else
+                                    {
+                                        <div id=@blabla class="hidden_row">
+                                            @mm.اسمالكتاب
+                                        </div>
+                                    }
+
+                                    i++;
+                                    k++;
+                                }
+                            }
+                        </td>
+                        <td style="text-align:right">
+                            @value.اسمالقسم
+                        </td>
+                        <td style="text-align:right">
+                            @value.رقمالقسم
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <!-- End Table with hoverable rows -->
+
+    </div>
+</div>

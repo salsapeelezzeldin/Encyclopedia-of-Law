@@ -1,0 +1,66 @@
+﻿@model Encyclopedia_Of_Laws.Models.Subjectsمواد
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<link href="~/css/CreatePages.css" rel="stylesheet" />
+<script src="~/js/Collapse.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function copy() {
+        document.getElementById('automated').value = document.getElementById('copied').value;
+        document.getElementById('status').value = "معدله";
+        document.getElementById('ooo').value = "";
+        document.getElementById('ooo').setAttribute('required', '');
+    }
+</script>
+
+<h1 style="text-align:right">تعديل المادة</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdSubjects" />
+            <div class="form-group">
+                <label asp-for="رقمالماده" class="control-label"></label>
+                <input asp-for="رقمالماده" id="required" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="رقمالماده" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="محتوىالماده" class="control-label"></label>
+                <br />
+                <div>
+                    <textarea asp-for="محتوىالماده" id="copied" onclick="copy()" required></textarea>
+                </div>
+                <span asp-validation-for="محتوىالماده" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" id="status" asp-for="حالهالماده" class="form-control" />
+                <span asp-validation-for="حالهالماده" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" id="automated" asp-for="التعديلالسابقللماده" class="form-control" />
+                <span asp-validation-for="التعديلالسابقللماده" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="سنهالتعديلالسابق" class="control-label"></label>
+                <input id="ooo" asp-for="سنهالتعديلالسابق" class="form-control" style="font-size:23px" />
+                <span asp-validation-for="سنهالتعديلالسابق" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="حـفـظ" id="submit" onclick="validate()" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a id="back" asp-action="SubjectPage"><== الرجوع إلي المواد</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

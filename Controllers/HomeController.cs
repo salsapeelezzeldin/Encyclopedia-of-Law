@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Encyclopedia_Of_Laws.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
+namespace Encyclopedia_Of_Laws.Controllers
 {
     public class HomeController : Controller
     {
@@ -24,6 +24,15 @@ namespace WebApplication1.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult AdminHome()
+        {
+            return View();
+        }
+        public IActionResult UserHome()
         {
             return View();
         }

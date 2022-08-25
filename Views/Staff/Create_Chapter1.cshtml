@@ -1,0 +1,44 @@
+﻿@* دي حاجه مجهوله معرفش اصلا عملتلها create ليه فالاحسن نشوف ايه استخدمها او نمسحها*@
+@*@model Encyclopedia_Of_Laws.Models.Sectionكتابقسم
+
+    @{
+        ViewData["Title"] = "Create_Chapter1";
+    }
+
+    <h1>Create_Chapter1</h1>
+
+    <h4>Sectionكتابقسم</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create_Chapter1">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="IdB" class="control-label"></label>
+                    <select asp-for="IdB" class ="form-control" asp-items="ViewBag.IdB"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="رقمالباب" class="control-label"></label>
+                    <input asp-for="رقمالباب" class="form-control" />
+                    <span asp-validation-for="رقمالباب" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="اسمالباب" class="control-label"></label>
+                    <input asp-for="اسمالباب" class="form-control" />
+                    <span asp-validation-for="اسمالباب" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+*@

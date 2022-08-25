@@ -1,0 +1,350 @@
+﻿@model Encyclopedia_Of_Laws.Models.Subjectsمواد
+
+@{
+    ViewData["Title"] = "TheLasUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   @* int intSno = 0;*@
+
+Pager pager = new Pager();
+int pagNo = 0;
+if (ViewBag.Pager != null)
+{
+    pager = ViewBag.Pager;
+    pagNo = pager.CurrentPage;
+}
+
+}
+
+
+<h2 class="text-center">النسخة الحالية</h2>
+<head runat="server">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+
+
+
+
+        /******************************/
+        .rounded-pill {
+            border-radius: 1rem
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 31.25rem;
+            margin: 6rem auto;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 31.25rem;
+            margin: 6rem auto;
+        }
+
+        .label {
+            font-size: .625rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: +1.3px;
+            margin-bottom: 1rem;
+        }
+
+        .searchBar {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        #searchQueryInput {
+            width: 100%;
+            height: 2.8rem;
+            background: #fff;
+            outline: none;
+            border: none;
+            border-radius: 1.625rem;
+            padding: 0 3.5rem 0 1.5rem;
+            font-size: 1rem;
+            border-radius: 25px;
+            border-color: rgba(255, 255, 255, var(--tw-border-opacity));
+            box-shadow: 0 2px 2px 0 rgb(84 110 122 / 6%), 0 3px 1px -2px rgb(84 110 122 / 12%), 0 10px 5px 0 rgb(84 110 122 / 20%);
+            border-width: 2px;
+        }
+
+        #searchQuerySubmit {
+            width: 3.5rem;
+            height: 2.8rem;
+            margin-left: -3.5rem;
+            /* border: none;*/
+            outline: none;
+            border-top-right-radius: 1.625rem;
+            border-bottom-right-radius: 1.625rem;
+            align-items: stretch;
+            background: none;
+            padding: 0;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            background-color: darkblue;
+            box-shadow: 0 2px 2px 0 rgb(84 110 122 / 6%), 0 3px 1px -2px rgb(84 110 122 / 12%), 0 1px 5px 0 rgb(84 110 122 / 20%);
+        }
+
+            #searchQuerySubmit:hover {
+                cursor: pointer;
+            }
+
+
+
+        .border-blueGray-100 {
+            --tw-border-opacity: 1;
+            border-color: rgba(207, 216, 220, var(--tw-border-opacity));
+        }
+
+        .border-2 {
+            border-width: 2px;
+            border-color: darkblue;
+            align-items:
+        }
+
+        .rounded-25 {
+            border-radius: 1.5625rem;
+        }
+
+
+
+
+        *, ::before, ::after {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: currentColor;
+        }
+
+
+        /* canava*/
+
+
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+        }
+
+        canvas {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            background-image: linear-gradient(to top, rgba(0, 169, 217, .7) 0%, rgba(0, 169, 217, .5) 5%, rgba(0, 169, 217, .0) 70%);
+        }
+
+        .youtube-link {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        /*canva*/
+    </style>
+
+
+</head>
+
+@*<p>@Html.ActionLink("Print", "PrintAll")</p>*@
+
+
+
+@*// الشكل الجديد*@
+<style>
+
+    .topic {
+        background: #fafafa;
+        margin-bottom: 20px;
+        box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        position: relative;
+        border: solid 3px #00008B;
+        /*border-top: solid 1px #f2f2f2;*/
+        margin-left: 15px;
+        border-radius: 5px;
+    }
+
+    .topic-paging {
+        margin: 0 20px 0 35px;
+    }
+
+
+
+    .mada-title {
+        color: #000;
+        font-size: 24px;
+        font-family: 'GESSTwoMediumRegular';
+    }
+
+        .mada-title a {
+            color: #000;
+        }
+
+
+
+    .editings-con {
+        top: 0px;
+        right: 140px;
+        position: absolute;
+        width: 250px;
+    }
+
+    .topic span.new {
+        color: #fff;
+        padding: 0 10px;
+        background: #00008B;
+        font-size: 9px;
+        font-family: tahoma;
+        margin-left: 3px;
+        line-height: 18px;
+        float: right;
+        border-radius: 0 0 3px 3px;
+    }
+
+    .topic .old {
+        color: #333;
+        padding: 0 10px;
+        background: #DDD;
+        font-size: 9px;
+        font-family: tahoma;
+        margin-left: 3px;
+        line-height: 18px;
+        float: right;
+        clear: left;
+        border-radius: 0 0 3px 3px;
+    }
+
+    body {
+        margin: 0;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: right;
+        background-color: #fff;
+    }
+
+    p {
+        margin: 0 0 9px;
+    }
+
+    user agent stylesheet
+    p {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    }
+</style>
+
+
+<div class="topic article-block">
+    <div class="editings-con">
+        <span class="new">النسخة الحاليه</span>
+
+
+
+    </div>
+
+
+    <h3>
+        <p class="made-title">
+
+            <dd class="col-sm-10">
+                <a asp-action="Details" asp-route-id="@Model.IdSubjects"> @Html.DisplayFor(model => model.رقمالماده)</a>
+            </dd>
+
+        <p>
+    </h3>
+
+    <dd class="col-sm-10">
+        <p>@Html.DisplayFor(model => model.محتوىالماده)</p>
+    </dd>
+
+
+    <dd class="col-sm-10">
+        <p>  @Html.DisplayFor(model => model.حالهالماده)</p>
+    </dd>
+
+
+
+
+</div>
+
+
+<h2 class="text-center">التعديلات السابقة للمادة</h2>
+
+
+<div class="topic article-block">
+    <div class="editings-con">
+
+
+        <a class="old">التعديلات السابقة للمادة</a>
+
+    </div>
+
+
+    <h3>
+        <p class="made-title">
+
+            <dd class="col-sm-10">
+                <a asp-action="Details" asp-route-id="@Model.IdSubjects"> @Html.DisplayFor(model => model.رقمالماده)</a>
+            </dd>
+
+        <p>
+    </h3>
+
+
+   
+
+    <p> حالة المادة:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  @Html.DisplayFor(model => model.حالهالماده)</p>
+
+
+    
+   
+        @*<p>  @Html.DisplayFor(model => model.حالهالماده)</p>*@
+
+
+
+
+        
+<p>التعديل السابق :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @Html.DisplayFor(model => model.التعديلالسابقللماده)</p>
+       
+
+
+
+
+  
+<p> سنة التعديل:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @Html.DisplayFor(model => model.سنهالتعديلالسابق)</p>
+        
+
+
+    </div>
+
+    <div>
+
+        <a asp-action="Index">العودة الي المواد</a>
+    </div>
+
+

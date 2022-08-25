@@ -1,0 +1,40 @@
+﻿@model Encyclopedia_Of_Laws.Models.Bookكتابقسمباب
+
+@{
+    ViewData["Title"] = "Edit_Book";
+}
+<link href="~/css/CreatePages.css" rel="stylesheet" />
+<script src="~/js/Collapse.js"></script>
+<h1 style="text-align:right">تعديل كتاب</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit_Book">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdB" />
+            <div class="form-group">
+                <label asp-for="رقمالكتاب" class="control-label"></label>
+                <input id="required" asp-for="رقمالكتاب" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="رقمالكتاب" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="اسمالكتاب" class="control-label"></label>
+                <input id="required" asp-for="اسمالكتاب" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="اسمالكتاب" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-primary" id="submit" onclick="validate()" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a id="back" asp-action="BookPage"><== الرجوع إلي الكتب</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

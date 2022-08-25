@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
-// If you have enabled NRTs for your project, then un-comment the following line:
-// #nullable disable
-
-namespace WebApplication1.Models
+namespace Encyclopedia_Of_Laws.Models
 {
-    public partial class LawyerInfo
+    public class LawyerInfo
     {
+        [Key]
         public int LawyerId { get; set; }
-        public string JopDescription { get; set; }
         public string Specialization { get; set; }
-        public string Information { get; set; }
         public string OfficeNumber { get; set; }
         public string OfficeLocation { get; set; }
-
-        public virtual Users Lawyer { get; set; }
+        public string Information { get; set; }
+        public string JopDescription { get; set; }
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

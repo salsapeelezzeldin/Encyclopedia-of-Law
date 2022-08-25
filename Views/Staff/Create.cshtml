@@ -1,0 +1,76 @@
+﻿@model Encyclopedia_Of_Laws.Models.Subjectsمواد
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Sybjectsمواد</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdChapter" class="control-label"></label>
+                <select asp-for="IdChapter" class ="form-control" asp-items="ViewBag.IdChapter"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCh2" class="control-label"></label>
+                <select asp-for="IdCh2" class ="form-control" asp-items="ViewBag.IdCh2"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCh3" class="control-label"></label>
+                <select asp-for="IdCh3" class ="form-control" asp-items="ViewBag.IdCh3"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="رقمالماده" class="control-label"></label>
+                <input asp-for="رقمالماده" class="form-control" />
+                <span asp-validation-for="رقمالماده" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="محتوىالماده" class="control-label"></label>
+                <input asp-for="محتوىالماده" class="form-control" />
+                <span asp-validation-for="محتوىالماده" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="التعديلالسابقللماده" class="control-label"></label>
+                <input asp-for="التعديلالسابقللماده" class="form-control" />
+                <span asp-validation-for="التعديلالسابقللماده" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="سنهالتعديلالسابق" class="control-label"></label>
+                <input asp-for="سنهالتعديلالسابق" class="form-control" />
+                <span asp-validation-for="سنهالتعديلالسابق" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdLaw" class="control-label"></label>
+                <select asp-for="IdLaw" class ="form-control" asp-items="ViewBag.IdLaw"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdSقسم" class="control-label"></label>
+                <select asp-for="IdSقسم" class ="form-control" asp-items="ViewBag.IdSقسم"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdB" class="control-label"></label>
+                <select asp-for="IdB" class ="form-control" asp-items="ViewBag.IdB"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdP" class="control-label"></label>
+                <select asp-for="IdP" class ="form-control" asp-items="ViewBag.IdP"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

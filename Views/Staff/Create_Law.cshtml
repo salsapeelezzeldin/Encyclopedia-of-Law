@@ -1,0 +1,77 @@
+﻿@model Encyclopedia_Of_Laws.Models.Law
+
+@{
+    ViewData["Title"] = "Create_Law";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="~/css/CreatePages.css" rel="stylesheet" />
+<script src="~/js/Collapse.js"></script>
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h1 style="text-align:right">إضافة قانون</h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create_Law">
+
+                    @*                <div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+                    <div class="form-group">
+                        <label asp-for="اسمالقانون" class="control-label"></label>
+                        <input id="required" asp-for="اسمالقانون" class="form-control" required value="" />
+                        <span asp-validation-for="اسمالقانون" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="اسممصدره" class="control-label"></label>
+                        <input id="required" asp-for="اسممصدره" class="form-control" style="font-size:23px" required />
+                        <span asp-validation-for="اسممصدره" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="جهةالاصدار" class="control-label"></label>
+                        <input id="required" asp-for="جهةالاصدار" class="form-control" style="font-size:23px" required />
+                        <span asp-validation-for="جهةالاصدار" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="رقمالوثيقه" class="control-label"></label>
+                        <input id="required" asp-for="رقمالوثيقه" class="form-control" style="font-size:23px" required />
+                        <span asp-validation-for="رقمالوثيقه" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="تاريخاصدارالقانون" class="control-label"></label>
+                        <input id="required" asp-for="تاريخاصدارالقانون" class="form-control" style="font-size:23px" required />
+                        <span asp-validation-for="تاريخاصدارالقانون" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="جهةالنشر" class="control-label"></label>
+                        <input id="required" asp-for="جهةالنشر" class="form-control" style="font-size:23px" required />
+                        <span asp-validation-for="جهةالنشر" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="تاريخالنشر" class="control-label"></label>
+                        <input id="required" asp-for="تاريخالنشر" class="form-control" style="font-size:23px" required />
+                        <span asp-validation-for="تاريخالنشر" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="حفظ" class="btn btn-primary" id="submit" onclick="validate()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a id="back" asp-action="LawPage"> <== الرجوع إلي القوانين</a>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

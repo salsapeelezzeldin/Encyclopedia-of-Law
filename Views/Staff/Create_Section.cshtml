@@ -1,0 +1,48 @@
+﻿@model Encyclopedia_Of_Laws.ViewModels.BookSectionViewModel
+
+@{
+    ViewData["Title"] = "Create_Section";
+}
+<link href="~/css/CreatePages.css" rel="stylesheet" />
+<script src="~/js/Collapse.js"></script>
+<h1 style="text-align:right">إضافة باب</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create_Section">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">أسم الكتاب</label>
+                <br />
+                <select asp-for="ابواب.IdB" class="form-select-sm"
+                        asp-items="@(new SelectList(Model.books, "IdB", "اسمالكتاب"))" id="required">
+                    <option selected="selected" value="">--أختر كتاب--</option>
+                </select>
+                <span asp-validation-for="ابواب.IdB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ابواب.رقمالباب" class="control-label"></label>
+                <input id="required" asp-for="ابواب.رقمالباب" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="ابواب.رقمالباب" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ابواب.اسمالباب" class="control-label"></label>
+                <input id="required" asp-for="ابواب.اسمالباب" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="ابواب.رقمالباب" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-primary" id="submit" onclick="validate()"  />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a id="back" asp-action="SectionPage"> <== الرجوع إلي الأبواب</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

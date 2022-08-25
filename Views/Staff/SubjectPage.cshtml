@@ -1,0 +1,220 @@
+﻿@model IEnumerable<Encyclopedia_Of_Laws.Models.Subjectsمواد>
+@using Encyclopedia_Of_Laws.Views.Shared.Components.SearchBar1
+
+@{
+    ViewData["Title"] = "SubjectPage";
+    // Layout = "~/Views/Shared/_StaffLayout.cshtml";
+    ViewData["Action"] = "Create_Subject";
+    ViewData["Possible_Search"] = "رقم الماده";
+    int i = 1;
+    int k = 1;
+    string blabla;
+    int Index;
+    int spaceindex;
+}
+
+<style>
+
+    @*.staff-container{
+            background-color:gray;
+            text-align:right;
+    }*@
+@*    .first-row, .hidden_row {
+        text-align: right;
+        display: inline
+    }*@
+    .محتوىالماده{
+        width:600;
+        text-align:right;
+    }
+    .رقمالماده{
+        width:auto;
+        text-align:right
+    }
+    .حالةالماده {
+        width: fit-content;
+        text-align:right
+    }
+</style>
+
+<div class="card">
+    <div class="card-body" style="padding: 20px;">
+
+        <!-- Table with hoverable rows -->
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>العمليات</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.حالهالماده)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.محتوىالماده)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.رقمالماده)
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    k = 1;
+                    <tr class="table-rows js-parent">
+                        <td class="processes">
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.IdSubjects">
+                                تعديل
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.IdSubjects">
+                                تفاصيل
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="javascript:;" class="btn btn-danger js-delete" data-id="@item.IdSubjects">
+                                حذف
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                        <td class="حالةالماده">
+                            @Html.DisplayFor(modelItem => item.حالهالماده)
+                        </td>
+                        <td class="محتوىالماده" onclick="showHideRow(@item.IdSubjects);">
+                            @if (item.محتوىالماده != null && item.محتوىالماده.Length > 90)
+                            {
+                                blabla = "hidden_row" + i + "_" + item.IdSubjects;
+                                Index = 90;
+                                if (@item.محتوىالماده[Index] == ' ')
+                                {
+                                    @if (k == 1)
+                                    {
+                                        <div id="hidden_row_@item.IdSubjects" class="first-row">
+                                            @item.محتوىالماده.Substring(0, Index)
+                                        </div>
+                                    }
+                                    <div id=@blabla class="hidden_row" style="">
+                                        @item.محتوىالماده.Substring(Index)
+                                    </div>
+                                }
+                                else
+                                {
+                                    spaceindex = Index + item.محتوىالماده.Substring(Index).IndexOf(' ');
+                                    @if (k == 1)
+                                    {
+                                        <div id="hidden_row_@item.IdSubjects" class="first-row">
+                                            @item.محتوىالماده.Substring(0, spaceindex)
+                                        </div>
+                                    }
+                                    <div id=@blabla class="hidden_row">
+                                        @item.محتوىالماده.Substring(spaceindex)
+                                        @if (item.التعديلالسابقللماده != null)
+                                        {
+                                            <div>
+                                                @Html.DisplayNameFor(model => model.التعديلالسابقللماده)
+                                                @item.التعديلالسابقللماده
+                                            </div>
+                                            <div>
+                                                @Html.DisplayNameFor(model => model.سنهالتعديلالسابق)
+                                                @item.سنهالتعديلالسابق
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelitem => item.محتوىالماده)
+                                blabla = "hidden_row" + i + "_" + item.IdSubjects;
+
+                                @if (item.التعديلالسابقللماده != null)
+                                {
+                                    <div id=@blabla class="hidden_row">
+                                        <div style="color:red">
+                                            @Html.DisplayNameFor(model => model.التعديلالسابقللماده)
+                                        </div>
+                                        <div>
+                                            @item.التعديلالسابقللماده
+                                        </div>
+                                        <div style="color:red">
+                                            @Html.DisplayNameFor(model => model.سنهالتعديلالسابق)
+                                        </div>
+                                        <div>
+                                            @item.سنهالتعديلالسابق
+                                        </div>
+
+                                    </div>
+                                }
+
+
+                            }
+                        </td>
+                        <td class="رقمالماده">
+                            @Html.DisplayFor(modelItem => item.رقمالماده)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- End Table with hoverable rows -->
+
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="~/js/ChapterController.js"></script>
+
+
+    <script>
+        //Delete Request
+        $(document).ready(function () {
+            $('.js-delete').on('click', function () {
+                var btn = $(this);
+
+                bootbox.confirm({
+                    closeButton: false,
+                    message: "Are you sure you want to delete this subject?",
+                    buttons: {
+                        confirm: {
+                            label: 'Ok',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-outline-secondary'
+                        }
+
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: '/Staff/Delete/' + btn.data('id'),
+                                success: function () {
+                                    var requestContainer = btn.parents('.js-parent');
+                                    requestContainer.addClass('animate__animated animate__zoomOut');
+                                    setTimeout(function () {
+                                        requestContainer.remove();
+                                    }, 1000);
+                                    toastr.success('Subject deleted successfully');
+                                },
+                                error: function () {
+                                    toastr.error('Something went wrong!');
+                                }
+                            });
+                        }
+                    }
+                });
+
+
+            });
+        });
+
+
+    </script>
+}

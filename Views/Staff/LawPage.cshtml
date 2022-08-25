@@ -1,0 +1,112 @@
+﻿@model Encyclopedia_Of_Laws.ViewModels.LawPartViewModel
+@using Encyclopedia_Of_Laws.Views.Shared.Components.SearchBar1
+
+@{
+    ViewData["Title"] = "LawPage";
+   // Layout = "~/Views/Shared/_StaffLayout.cshtml";
+    ViewData["Action"] = "Create_Law";
+    ViewData["Possible_Search"] = "أسم القانون";
+    int i = 1;
+    int k = 1;
+    string blabla;
+
+}
+@section Scripts{
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="~/js/ChapterController.js"></script>
+}
+
+<div class="card">
+    <div class="card-body" style="padding: 20px;">
+   
+        <!-- Table with hoverable rows -->
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">العمليات</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.أقسام)</th>
+                    <th scope="col">تاريخ النشر</th>
+                    <th scope="col">جهة النشر</th>
+                    <th scope="col">تاريخ إصدار القانون</th>
+                    <th scope="col">جهة الإصدار</th>
+                    <th scope="col">أسم المصدر</th>
+                    <th scope="col">رقم الوثيقه</th>             
+                    <th scope="col">أسم القانون</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var value in Model.laws)
+                {
+                    i = 1;
+                    k = 1;
+                    <tr onclick="showHideRow(@value.IdLaw);" class="table-rows">
+
+                        <td class="processes">
+
+                            <a class="btn btn-secondary" asp-action="Law_Details" asp-route-id="@value.IdLaw">
+                                تفاصيل
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a class="btn btn-primary" asp-action="Edit_Law" asp-route-id="@value.IdLaw">
+                                تعديل
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
+                        <td>
+                            @foreach (Partقسمكتابباب mm in Model.أقسام)
+                            {
+                                @if (mm.IdLaw == value.IdLaw)
+                                {
+                                    blabla = "hidden_row" + i + "_" + value.IdLaw;
+                                    @if (k == 1)
+                                    {
+
+                                        <div id="hidden_row_@value.IdLaw" class="first-row">@mm.اسمالقسم</div>
+                                    }
+                                    else
+                                    {
+                                        <div id=@blabla class="hidden_row">
+                                            @mm.اسمالقسم
+                                        </div>
+                                    }
+
+                                    i++;
+                                    k++;
+
+                                }
+
+                            }
+                        </td>
+                        <td style="text-align:right">
+                            @value.تاريخالنشر
+                        </td>
+                        <td style="text-align:right">
+                            @value.جهةالنشر
+                        </td>
+                        <td style="text-align:right">
+                            @value.تاريخاصدارالقانون
+                        </td>
+                        <td style="text-align:right">
+                            @value.جهةالاصدار
+                        </td>
+                        <td style="text-align:right">
+                            @value.اسممصدره
+                        </td>
+                        <td style="text-align:right">
+                            @value.رقمالوثيقه
+                        </td>
+                        <td style="text-align:right">
+                            @value.اسمالقانون
+                        </td>
+                    </tr>
+                }
+         
+            </tbody>
+        </table>
+        <!-- End Table with hoverable rows -->
+
+    </div>
+</div>
+  
+
+

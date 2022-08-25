@@ -1,0 +1,68 @@
+﻿@model Encyclopedia_Of_Laws.ViewModels.SectionChapterViewModels
+
+@{
+    ViewData["Title"] = "Edit_Chapter";
+    @*    var ms = Model.chapter2.Select(p => p.اسمالنقطه).FirstOrDefault();
+        var mi = Model.chapter2.Where(p => p.IdCh2 == Model.chapters2.IdCh2).Select(p => p.اسمالنقطه).FirstOrDefault();*@
+    @*Model.chapters2.اسمالنقطه = null;*@
+}
+<link href="~/css/CreatePages.css" rel="stylesheet" />
+<script src="~/js/Collapse.js"></script>
+
+<h1 style="text-align:right">تعديل الفصل</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit_Chapter">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="chapter.IdChapter" />
+            <div class="form-group">
+                <label asp-for="chapter.رقمالفصل" class="control-label"></label>
+                <input id="required" asp-for="chapter.رقمالفصل" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="chapter.رقمالفصل" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="chapter.اسمالفصل" class="control-label"></label>
+                <input id="required" asp-for="chapter.اسمالفصل" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="chapter.اسمالفصل" class="text-danger"></span>
+            </div>
+            @for (int i = 0; i < Model.chapter2.Count(); i++)
+            {
+                <div class="form-group">
+                    <input type="hidden" asp-for="chapter2[i].IdCh2" />
+                    <input type="hidden" asp-for="chapter2[i].IdChapter" />
+                    <label asp-for="chapter2[i].اسمالنقطه" class="control-label"></label>
+                    <input id="required" asp-for="chapter2[i].اسمالنقطه" class="form-control" style="font-size:23px" required />
+                    <span asp-validation-for="chapter2[i].اسمالنقطه" class="text-danger"></span>
+                </div>
+                @for (int j = 0; j < Model.chapter3.Count(); j++)
+                {
+                    if (Model.chapter3[j].IdCh2 == Model.chapter2[i].IdCh2)
+                    {
+                        <div class="form-group">
+                            <input type="hidden" asp-for="chapter3[j].IdCh3" />
+                            <input type="hidden" asp-for="chapter3[j].IdCh2" />
+
+                            <label asp-for="chapter3[j].محتويالنقطه" class="control-label"></label>
+                            <input id="required" asp-for="chapter3[j].محتويالنقطه" class="form-control" style="font-size:23px" required />
+                            <span asp-validation-for="chapter3[j].محتويالنقطه" class="text-danger"></span>
+                        </div>
+                    }
+                }
+            }
+            <br />
+            <div class="form-group">
+                <input type="submit" value="حـفـظ"  id="submit" onclick="validate()" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a id="back" asp-action="ChapterPage"><== الرجوع إلي الفصول</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

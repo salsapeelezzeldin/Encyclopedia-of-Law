@@ -1,0 +1,194 @@
+﻿@model Encyclopedia_Of_Laws.ViewModels.SubjectWithLawContentsViewModel
+
+@{
+    ViewData["Title"] = "Create_Subject";
+    int id = 0;
+}
+<link href="~/css/CreatePages.css" rel="stylesheet" />
+<script src="~/js/Collapse.js"></script>
+<style>
+    .hdn {
+        display: none;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function SelectList(n) {
+        var selectElement = document.querySelector('#select1');
+        var output = selectElement.value;
+        var element;
+        if (output == "law1") {
+            
+            document.getElementById("law").style.display = "block";
+            document.getElementById("part").style.display = "none";
+            document.getElementById("book").style.display = "none";
+            document.getElementById("section").style.display = "none";
+            document.getElementById("chapter").style.display = "none";
+
+            document.getElementById("part2").removeAttribute('required');
+            document.getElementById("section2").removeAttribute('required');
+            document.getElementById("book2").removeAttribute('required');
+            document.getElementById("chapter12").removeAttribute('required');
+        }
+        else if (output == "part1") {
+            document.getElementById("law").style.display = "none";
+            document.getElementById("part").style.display = "none";
+            document.getElementById("book").style.display = "none";
+            document.getElementById("section").style.display = "block";
+            document.getElementById("chapter").style.display = "none";
+
+            document.getElementById("law2").removeAttribute('required');
+            document.getElementById("section2").removeAttribute('required');
+            document.getElementById("book2").removeAttribute('required');
+            document.getElementById("chapter12").removeAttribute('required');
+        }
+        else if (output == "book1") {
+            document.getElementById("law").style.display = "none";
+            document.getElementById("part").style.display = "none";
+            document.getElementById("book").style.display = "block";
+            document.getElementById("section").style.display = "none";
+            document.getElementById("chapter").style.display = "none";
+
+            document.getElementById("law2").removeAttribute('required');
+            document.getElementById("section2").removeAttribute('required');
+            document.getElementById("part2").removeAttribute('required');
+            document.getElementById("chapter12").removeAttribute('required');
+        }
+        else if (output == "section1") {
+            document.getElementById("law").style.display = "none";
+            document.getElementById("part").style.display = "block";
+            document.getElementById("book").style.display = "none";
+            document.getElementById("section").style.display = "none";
+            document.getElementById("chapter").style.display = "none";
+
+            document.getElementById("law2").removeAttribute('required');
+            document.getElementById("part2").removeAttribute('required');
+            document.getElementById("book2").removeAttribute('required');
+            document.getElementById("chapter12").removeAttribute('required');
+        }
+        else if (output == "chapter1") {
+            document.getElementById("law").style.display = "none";
+            document.getElementById("part").style.display = "none";
+            document.getElementById("book").style.display = "none";
+            document.getElementById("section").style.display = "none";
+            document.getElementById("chapter").style.display = "block";
+
+            document.getElementById("law2").removeAttribute('required');
+            document.getElementById("section2").removeAttribute('required');
+            document.getElementById("book2").removeAttribute('required');
+            document.getElementById("part2").removeAttribute('required');
+        }
+
+    }
+</script>
+<h1 style="text-align:right">إضافة مادة</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create_Subject">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="dropdown">
+                <select class="form-select-sm" onclick="SelectList()" id="select1" id="required" required style="margin-left:8pc">
+                    <option selected="selected" value="">--أختر أيهم سوف تدرج الماده أسفل منه--</option>
+                    <option value="law1">قانون</option>
+                    <option value="part1">قسم</option>
+                    <option value="book1">كتاب</option>
+                    <option value="section1">باب</option>
+                    <option value="chapter1">فصل</option>
+                </select>
+            </div>
+
+            <div  class="hdn" id="law">
+                <label class="">اسم القانون</label>
+                <br />
+                <select asp-for="subject.IdLaw" class="form-select-sm" id="law2"
+                        asp-items="@(new SelectList(Model.law_list, "IdLaw", "اسمالقانون"))" required >
+                    <option selected="selected" value="">--أختر قانون--</option>
+                </select>
+                <span asp-validation-for="subject.IdLaw" class="text-danger"></span>
+            </div>
+            <div class="hdn" id="section">
+                <label class="">اسم القسم</label>
+                <br />
+                <select asp-for="subject.IdSقسم" class="form-select-sm" id="part2"
+                        asp-items="@(new SelectList(Model.part_list, "IdS", "اسمالقسم"))" required>
+                    <option selected="selected" value="">--أختر قسم--</option>
+                </select>
+                <span asp-validation-for="subject.IdSقسم" class="text-danger"></span>
+            </div>
+            <div class="hdn" id="book">
+                <label class="">اسم الكتاب</label>
+                <br />
+                <select asp-for="subject.IdB" class="form-select-sm" id="book2"
+                        asp-items="@(new SelectList(Model.book_list, "IdB", "اسمالكتاب"))" required>
+                    <option selected="selected" value="">--أختر كتاب--</option>
+                </select>
+                <span asp-validation-for="subject.IdB" class="text-danger"></span>
+            </div>
+            <div class="hdn" id="part">
+                <label class="">اسم الباب</label>
+                <br />
+                <select asp-for="subject.IdP" class="form-select-sm" id="section2"
+                        asp-items="@(new SelectList(Model.section_list, "IdP", "اسمالباب"))" required>
+                    <option selected="selected" value="">--أختر باب--</option>
+                </select>
+                <span asp-validation-for="subject.IdP" class="text-danger"></span>
+            </div>
+            <div class="hdn" id="chapter">
+                <label class="">اسم الفصل</label>
+                <select asp-for="subject.IdChapter" class="form-select-sm" id="chapter12"
+                        asp-items="@(new SelectList(Model.chapter1_list, "IdChapter", "اسمالفصل"))" required>
+                    <option selected="selected" value="">--أختر فصل--</option>
+                </select>
+                <span asp-validation-for="subject.IdChapter" class="text-danger"></span>
+                <label class="">اسم النقطة</label>
+                <select asp-for="subject.IdCh2" class="form-select-sm"
+                        asp-items="@(new SelectList(Model.chapter2_list, "IdCh2", "اسمالنقطه"))"  >
+                    <option selected="selected" value="">---أختر اسم نقطة---</option>
+                </select>
+                <span asp-validation-for="subject.IdCh2" class="text-danger"></span>
+                <label class="">محتوى النقطة</label>
+                <br />
+                <select asp-for="subject.IdCh3" class="form-select-sm"
+                        asp-items="@(new SelectList(Model.chapter3_list, "IdCh3", "محتويالنقطه"))"  >
+                    <option selected="selected" value="">---أختر محتوى نقطة---</option>
+                </select>
+                <span asp-validation-for="subject.IdCh3" class="text-danger"></span>
+            </div>
+
+            <div class="">
+                <label asp-for="subject.رقمالماده" class="control-label"></label>
+                <input id="required" asp-for="subject.رقمالماده" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="subject.رقمالماده" class="text-danger"></span>
+            </div>
+            <div class="">
+                <label asp-for="subject.محتوىالماده" class="control-label"></label>
+                <input id="required" asp-for="subject.محتوىالماده" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="subject.محتوىالماده" class="text-danger"></span>
+            </div>
+            <div class="">
+                <label asp-for="subject.التعديلالسابقللماده" class="control-label"></label>
+                <input asp-for="subject.التعديلالسابقللماده" class="form-control" style="font-size:23px" />
+                <span asp-validation-for="subject.التعديلالسابقللماده" class="text-danger"></span>
+            </div>
+            <div class="">
+                <label asp-for="subject.سنهالتعديلالسابق" class="control-label"></label>
+                <input asp-for="subject.سنهالتعديلالسابق" class="form-control" style="font-size:23px" />
+                <span asp-validation-for="subject.سنهالتعديلالسابق" class="text-danger"></span>
+            </div>
+
+            <br />
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-primary" id="submit" onclick="validate()" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a id="back" asp-action="SubjectPage"><== الرجوع إلي المواد</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

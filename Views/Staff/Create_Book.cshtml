@@ -1,0 +1,50 @@
+﻿@model Encyclopedia_Of_Laws.ViewModels.PartBookViewModel
+
+@{
+    ViewData["Title"] = "Create_Book";
+}
+<link href="~/css/CreatePages.css" rel="stylesheet" />
+<script src="~/js/Collapse.js"></script>
+<h1 style="text-align:right">إضافة كتاب</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create_Book">
+            <div>
+                <div class="form-group">
+                    <label asp-for="book.IdS" class="control-label">أسم القسم</label>
+                    <br />
+                    <select asp-for="book.IdS" class="form-select-sm"
+                            asp-items="@(new SelectList(Model.parts, "IdS", "اسمالقسم"))" id="required">
+                        <option selected="selected" value="">--أختر قسم--</option>
+                    </select>
+                    <span asp-validation-for="book.IdS" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="book.رقمالكتاب" class="control-label"></label>
+                    <input id="required" asp-for="book.رقمالكتاب" class="form-control" required style="font-size:23px"/>
+                    <span asp-validation-for="book.رقمالكتاب" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="book.اسمالكتاب" class="control-label"></label>
+                    <input id="required" asp-for="book.اسمالكتاب" class="form-control" required  style="font-size:23px"/>
+                    <span asp-validation-for="book.اسمالكتاب" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="حفظ" class="btn btn-primary" id="submit" onclick="validate()" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a id="back" asp-action="BookPage"><== العودة إلي الكتب</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

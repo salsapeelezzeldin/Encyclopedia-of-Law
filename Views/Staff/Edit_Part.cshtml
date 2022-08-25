@@ -1,0 +1,39 @@
+﻿@model Encyclopedia_Of_Laws.Models.Partقسمكتابباب
+
+@{
+    ViewData["Title"] = "Edit_Part";
+}
+<link href="~/css/CreatePages.css" rel="stylesheet" />
+<script src="~/js/Collapse.js"></script>
+<h1 style="text-align:right">تعديل القسم</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit_Part">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdS" />
+            <div class="form-group">
+                <label asp-for="رقمالقسم" class="control-label"></label>
+                <input id="required" asp-for="رقمالقسم" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="رقمالقسم" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="اسمالقسم" class="control-label"></label>
+                <input id="required" asp-for="اسمالقسم" class="form-control" style="font-size:23px" required />
+                <span asp-validation-for="اسمالقسم" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="حـفـظ" id="submit" onclick="validate()" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a id="back" asp-action="PartPage"><== الرجوع إلي الأقسام</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
