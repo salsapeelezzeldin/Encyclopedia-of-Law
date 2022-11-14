@@ -4,9 +4,9 @@
 - Using: HTML, CSS, JavaScript, Bootstrap, JQuery, SQL Server, C# and ASP.Net core.
 
 <h2>Demo:</h2>
-<video width="320" height="240" controls>
-  <source src="https://github.com/salsapeelezzeldin/Encyclopedia-of-Law/blob/main/Demo.mp4" type="video/mp4">
-</video>
+
+https://github.com/salsapeelezzeldin/Encyclopedia-of-Law/blob/main/Demo.mp4
+
 
 
 <h2>Tools and Technologies:</h2>
