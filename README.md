@@ -5,5 +5,5 @@
 
 
 <video width="320" height="240" controls>
-  <source src="https://drive.google.com/file/d/1p_10twXl0x8rwr99jJShk2Q0jLtp_qE-/view?usp=sharing" type="video/mp4">
+  <source src="DEMO.wmv" type="video/wmv">
 </video>
