@@ -4,11 +4,6 @@
 - Using: HTML, CSS, JavaScript, Bootstrap, JQuery, SQL Server, C# and ASP.Net core.
 
 <h2>Demo:</h2>
-<a href="https://github.com/salsapeelezzeldin/Encyclopedia-of-Law/blob/main/Demo.mp4" target="_blank" rel="noreferrer"> 
-    <img src="https://github.com/salsapeelezzeldin/Encyclopedia-of-Law/blob/main/Demo.mp4" alt="python"/> 
-</a>
-
-
 
 <h2>Tools and Technologies:</h2>
 <p> 
