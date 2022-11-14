@@ -5,5 +5,5 @@
 
 
 <video width="320" height="240" controls>
-  <source src="DEMO.wmv" type="video/wmv">
+  <source src="DEMO.wmv" type="video/mp4">
 </video>
